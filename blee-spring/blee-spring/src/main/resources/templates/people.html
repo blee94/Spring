@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,10 +9,13 @@
     <tr>
         <th>이름</th>
         <th>나이</th>
+        <th>구분</th>
     </tr>
     <tr th:each="person : ${people}">
         <td th:text="${person.name}"></td>
         <td th:text="${person.age}"></td>
+        <td th:if="${person.age} > 5" th:text="청소년"></td>
+        <td th:unless="${person.age} > 5" th:text="유아"></td>
     </tr>
 </table>
 </body>

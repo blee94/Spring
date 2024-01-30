@@ -14,7 +14,6 @@ public class PersonController {
     public String getPeople(Model model) {
         List<Person> peopleList = new ArrayList<>();
 
-        // 각기 다른 정보를 갖고 있는 Person 객체를 최소 4개 생성하여 ArrayList에 추가
         peopleList.add(new Person("짱구", 9));
         peopleList.add(new Person("짱아", 3));
         peopleList.add(new Person("유리", 9));
