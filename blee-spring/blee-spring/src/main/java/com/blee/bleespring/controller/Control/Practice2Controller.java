@@ -1,4 +1,4 @@
-package com.blee.bleespring.controller;
+package com.blee.bleespring.controller.Control;
 
 
 import org.springframework.stereotype.Controller;

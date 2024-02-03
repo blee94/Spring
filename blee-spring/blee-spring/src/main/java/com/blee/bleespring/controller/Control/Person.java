@@ -1,4 +1,4 @@
-package com.blee.bleespring.controller;
+package com.blee.bleespring.controller.Control;
 
 
 import lombok.Getter;

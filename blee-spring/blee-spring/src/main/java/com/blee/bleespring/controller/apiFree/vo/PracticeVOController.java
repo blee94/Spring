@@ -1,4 +1,4 @@
-package com.blee.bleespring.controller.vo;
+package com.blee.bleespring.controller.apiFree.vo;
 
 
 import org.springframework.stereotype.Controller;

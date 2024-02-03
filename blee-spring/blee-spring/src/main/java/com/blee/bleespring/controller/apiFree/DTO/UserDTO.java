@@ -1,9 +1,11 @@
-package com.blee.bleespring.controller.vo;
+package com.blee.bleespring.controller.apiFree.DTO;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public class UserVO {
+@Setter
+public class UserDTO {
     private String name;
     private String age;
 

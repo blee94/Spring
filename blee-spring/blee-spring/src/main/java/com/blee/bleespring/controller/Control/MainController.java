@@ -1,8 +1,7 @@
-package com.blee.bleespring.controller;
+package com.blee.bleespring.controller.Control;
 
-import com.blee.bleespring.controller.DTO.UserDTO;
-import com.blee.bleespring.controller.vo.UserVO;
-import org.apache.catalina.User;
+import com.blee.bleespring.controller.apiFree.DTO.UserDTO;
+import com.blee.bleespring.controller.apiFree.vo.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
