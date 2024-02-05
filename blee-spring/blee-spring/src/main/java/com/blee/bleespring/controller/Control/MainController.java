@@ -15,8 +15,8 @@ import lombok.Setter;
 // @RestController // @controller + @responsebody
 @Controller
 public class MainController {
-    @GetMapping("/")
-    public String getMain(){ return "request"; }
+//    @GetMapping("/test")
+//    public String getMain(){ return "board"; }
 
     @GetMapping("/get/response1")
     // ?key=value

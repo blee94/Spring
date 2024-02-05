@@ -16,6 +16,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/board")
 public class BoardController {
+
+    @GetMapping("/")
+    public String getMain(){
+        return "board";
+    }
     @Autowired
     BoardService boardService;
 
