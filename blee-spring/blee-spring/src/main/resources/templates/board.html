@@ -1,3 +1,4 @@
+<!-- board.html -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -72,6 +73,15 @@
         <th>삭제</th>
     </tr>
     <!--    타임리프 문법 이용해서 게시판 글 보여주기 -->
+    <tr th:each="board:${list}">
+        <td th:text="${board.getNo()}">번호</td>
+        <td th:text="${board.getBoardID()}">ID</td>
+        <td th:text="${board.getTitle()}">제목</td>
+        <td th:text="${board.getWriter()}">작성자</td>
+        <td th:text="${board.getRegistered()}">작성일</td>
+        <td th:onclick="editBoard([[${board.getBoardID()}]])">수정</td>
+        <td th:onclick="deleteBoard([[${board.getBoardID()}]])">삭제</td>
+    </tr>
 </table>
 </body>
 </html>

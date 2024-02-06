@@ -2,6 +2,7 @@ package com.blee.bleespring.service;
 
 
 import com.blee.bleespring.controller.DTO.BoardDTO;
+import com.blee.bleespring.domain.Board;
 import com.blee.bleespring.domain.User;
 import com.blee.bleespring.mapper.BoardMapper;
 import lombok.Getter;
@@ -21,34 +22,48 @@ public class BoardService {
     @Autowired
     BoardMapper boardMapper;
 
-    public List<BoardDTO> retrieveAll(){
+    public List<BoardDTO> getBoardAll(){
+        List<Board> result = boardMapper.getBoardAll();
+        List<BoardDTO> boards = new ArrayList<>();
 
-        List<User> users = boardMapper.retrieveAll();
-        List<BoardDTO> result = new ArrayList<>();
-
-        for (User practice2 : users){
+        for (Board board  : result){
             BoardDTO boardDTO = new BoardDTO();
-            boardDTO.setId(practice2.getId());
-            boardDTO.setTitle(practice2.getTitle());
-            boardDTO.setWriter(practice2.getWriter());
-//            boardDTO.setWritten_date(practice2.getWritten_date());
-
-            result.add(boardDTO);
+            boardDTO.setBoardId(board.getId());
+            boardDTO.setTitle(board.getTitle());
+            boardDTO.setWriter(board.getWriter());
+            boardDTO.setContent(board.getContent());
+            boardDTO.setRegistered(board.getRegistered());
+            boardDTO.setNo(100 + board.getId());
+            boards.add(boardDTO);
         }
-        return result;
+        return boards;
     }
 
-//    public void createUser(String id, String title, String writer, Timestamp written_date)
-//    { boardMapper.createUser(id, title, writer, written_date);
-//    }
-    public void createUser(String id, String title, String writer)
-    { boardMapper.createUser(id, title, writer);
-    }
-    public void updateUser(String id, String writer)
-    { boardMapper.updateUser(id, writer);
-    }
-    public void deleteUser(String id)
-    { boardMapper.deleteUser(id);
+    public boolean insertBoard(BoardDTO boardDTO){
+        Board board = new Board();
+        board.setTitle(boardDTO.getTitle());
+        board.setContent(boardDTO.getContent());
+        board.setWriter(boardDTO.getWriter());
+
+        boardMapper.insertBoard(board);
+        return true;
     }
 
+    public void patchBoard(BoardDTO boardDTO){
+        Board board = new Board();
+        board.setId(boardDTO.getBoardId());
+        board.setTitle(boardDTO.getTitle());
+        board.setContent(boardDTO.getContent());
+        board.setWriter(boardDTO.getWriter());
+        boardMapper.patchBoard(board);
+    }
+
+    public void deleteBoard(int id){
+        boardMapper.deleteBoard(id);
+    }
+
+    public int searchBoard(String word){
+        List<Board> result = boardMapper.searchBoard(word);
+        return result.size();
+    }
 }

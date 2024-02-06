@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class BoardDTO {
-    private String id;
-    private String title;
-    private String writer;
-//    private Timestamp written_date;
+    private int boardId;
+    private String title, content, writer, registered;
+    private int no;
 }
