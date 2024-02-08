@@ -1,11 +1,9 @@
 package com.blee.bleespring.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Setter
 @Entity // 데이터베이스의 필드와 변수의 연관관계가 정의된 친구, db 테이블에 대응되는 하나의 클래스
         // class Student {} 와 같은 빈 생성자가 필수로 필요!
 @NoArgsConstructor
