@@ -1,7 +1,7 @@
 package lecture.springbootsecurity.config;
 
 // Spring Security dependencies 를 추가했기 때문에 해당 페이지를 추가해줌.
-import lecture.springbootsecurity.security.CustomAuthFilter;
+import lecture.springbootsecurity.security.JwtAuthFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,21 +9,17 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
 
 @Configuration // 스프링 설정 클래스다 를 나타내는 annotation
 @EnableWebSecurity // Spring security 를 사용한다는 annotation
 public class WebSecurityConfig {
-    @Autowired
-    CustomAuthFilter customAuthFilter;
 
+@Autowired
+    JwtAuthFilter jwtAuthFilter;
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -36,11 +32,8 @@ public class WebSecurityConfig {
         http
                 .cors(Customizer.withDefaults()) // react 에서 요청 시 cors 문제 처리
                 .csrf(CsrfConfigurer::disable) // post, put 요청을 허용함
-                .logout(auth -> auth
-                        .logoutUrl("/auth/logout")
-                            .logoutSuccessHandler((request,response,authentication)-> {
-                                response.setStatus(200);
-                            })
+                .sessionManagement(sessionM -> sessionM
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // default: IF_REQUIRED
                 )
                 .authorizeHttpRequests(authorize->authorize
                 .requestMatchers("/auth/**")  // **: /auth/모든 url
@@ -53,7 +46,8 @@ public class WebSecurityConfig {
         // hasRole("권한"): 특정 권한이 있어야 접속 가능.
 
         // CustomAutoFilter.java 에서 만들어둔 custom 필터 등록.
-        http.addFilterAfter(customAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http.addFilterAfter(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

@@ -1,4 +1,4 @@
-package lecture.springbootsecurity.controller;
+package lecture.springbootsecurity.repository.controller;
 
 import jakarta.servlet.http.HttpSession;
 import lecture.springbootsecurity.dto.UserDTO;

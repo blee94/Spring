@@ -4,6 +4,7 @@ package lecture.springbootsecurity.security;
  // - 로그인 여부 판단 -> session 에 userId 가 존재하는지
  // - 존재하면: logged in
  // - else: not logged in
+ // - 로그아웃 시에 세션에서 로그인 정보 삭제 -> 서버에서 처리
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

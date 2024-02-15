@@ -1,4 +1,4 @@
-package lecture.springbootsecurity.controller;
+package lecture.springbootsecurity.repository.controller;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
